@@ -1,70 +1,41 @@
-# ==============================
-# Node & Dependencies
-# ==============================
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.npm/
-.yarn/
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
-# ==============================
-# React Native & Metro
-# ==============================
-.rncache
-# Expo specific
+# dependencies
+node_modules/
+
+# Expo
 .expo/
 dist/
 web-build/
+expo-env.d.ts
 
-# ==============================
-# Environment Variables & Secrets
-# ==============================
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
 *.pem
 
-# ==============================
-# Android
-# ==============================
-android/.gradle/
-android/app/build/
-android/build/
-android/local.properties
-# Keystore files (Never commit these if they contain production keys!)
-*.keystore
-*.jks
+# local env files
+.env*.local
 
-# ==============================
-# iOS
-# ==============================
-ios/Pods/
-ios/build/
-ios/Index/
-# Xcode user-specific configuration
-ios/*.xcworkspace/xcuserdata/
-ios/*.xcodeproj/xcuserdata/
-ios/*.xcodeproj/project.xcworkspace/xcuserdata/
-# OS X/macOS clutter
-.DS_Store
-*.idevmovedocument
-*.hmap
-*.xccheckout
-*.xcscmblueprint
+# typescript
+*.tsbuildinfo
 
-# ==============================
-# Testing & Coverage
-# ==============================
-coverage/
-__tests__/__snapshots__/
-
-# ==============================
-# Editor / IDE settings
-# ==============================
-.idea/
-.vscode/
-*.swp
-*.swo
+# generated native folders
+/ios
+/android
