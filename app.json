@@ -3,7 +3,7 @@
     "name": "SurfPoint_Native",
     "slug": "SurfPoint_Native",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "atomatic",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
     "ios": {

@@ -42,12 +42,9 @@ const Login = () => {
             
             if (response.data.requiresVerification) {
                 await sendCode(response.data.userId);
-                // React Navigation uses 'params' instead of 'state' for passing data
                 navigation.navigate('Verify', { userId: response.data.userId });
             } else {
                 login(response.data.user, response.data.token);
-                // RootNavigator will automatically unmount this stack when login() updates context, 
-                // so we do not strictly need to navigate manually, but it's fine to leave if explicit routing is preferred later.
             }
         } catch (error) {
             if (error.response?.status !== 429) {

@@ -1,23 +1,4 @@
-//import { StyleSheet, Platform } from 'react-native';
 
-// 1. THEME VARIABLES
-// Centralized colors and values exported for use in inline dynamic styles if needed.
-// export const theme = {
-//     colors: {
-//         primaryBlue: '#0077be',
-//         primaryBlueHover: '#005fa3',
-//         sandyWhite: '#f4f1ea',
-//         darkGrey: '#333333',
-//         lightGrey: '#cccccc',
-//         errorRed: '#d9534f',
-//         errorRedBg: '#fffcfc',
-//         successGreen: '#28a745',
-//     },
-//     spacing: {
-//         base: 15,
-//         padding: 20,
-//     }
-// };
 import { StyleSheet } from 'react-native';
 
 // 1. THEME VARIABLES
@@ -34,15 +15,15 @@ export const lightColors = {
 };
 
 export const darkColors = {
-    background: '#0B132B',   // Deep midnight ocean blue
-    card: '#1C2541',         // Lighter slate blue so cards pop off the background
-    text: '#F4F6F8',         // Crisp off-white (much easier to read than pure white)
-    subText: '#8D99AE',      // Muted cool grey-blue for secondary text/placeholders
-    border: '#3A506B',       // Subtle mid-tone blue for clean dividers
-    primaryBlue: '#48CAE4',  // Vibrant cyan that glows beautifully against dark navy
-    errorRed: '#FF5D73',     // Soft neon red for alerts
-    errorRedBg: '#2A0D12',   // Very dark tinted red for error banners
-    inputBg: '#050914',      // "Abyss" blue (darker than background) so inputs look indented
+    background: '#0B132B',   
+    card: '#1C2541',         
+    text: '#F4F6F8',         
+    subText: '#8D99AE',      
+    border: '#3A506B',       
+    primaryBlue: '#48CAE4',  
+    errorRed: '#FF5D73',     
+    errorRedBg: '#2A0D12',   
+    inputBg: '#050914',      
 };
 
 export const spacing = {

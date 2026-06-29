@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, ActivityIndicator, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SurfMap from '../components/SurfMap'; // We will build this next
-import SearchBar from '../components/SearchBar'; // We will build this next
+import SurfMap from '../components/SurfMap'; 
+import SearchBar from '../components/SearchBar';
 import { searchLocations } from '../api/authService';
 import { mapStyles } from '../styles/mapStyles';
 import { theme } from '../styles/globalStyles';
@@ -36,7 +36,6 @@ const MapPage = () => {
         }
     };
 
-    // Safely opens the device's default web browser
     const openMeteoAttribution = () => {
         Linking.openURL('https://open-meteo.com/');
     };

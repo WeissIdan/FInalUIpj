@@ -43,7 +43,6 @@ const UpdateUser = () => {
 
         const userId = user?.id || user?._id;
 
-        // --- Phase 1: Pre-flight Validation ---
         if (formData.firstname && !validateName(formData.firstname)) newErrors.firstname = "Invalid Name";
         if (formData.lastname && !validateName(formData.lastname)) newErrors.lastname = "Invalid Name";
         if (formData.birthday && !validateBirthday(formData.birthday)) newErrors.birthday = "Invalid Birthday (YYYY-MM-DD)";
@@ -62,7 +61,6 @@ const UpdateUser = () => {
         setErrorMsg(null);
         
         try {
-            // --- Phase 2: Demographic Profile Synchronization ---
             const profileUpdates = {};
             ['firstname', 'lastname', 'phonenum', 'birthday', 'gender'].forEach(key => {
                 if (formData[key]) profileUpdates[key] = formData[key];
@@ -71,15 +69,12 @@ const UpdateUser = () => {
             if (Object.keys(profileUpdates).length > 0) {
                 await updateUserProfile(userId, profileUpdates);
                 
-                // Context Hydration Strategy:
                 if (profileUpdates.firstname || profileUpdates.lastname) {
                     const updatedUserContext = { 
                         ...user, 
                         ...profileUpdates 
                     };
 
-                    // NEW: Retrieve the existing token securely from native storage
-                    // Note: If your AuthContext uses a different key like 'userToken', change it here!
                     const currentToken = await AsyncStorage.getItem('token');
                     
                     if (currentToken) {
@@ -90,7 +85,6 @@ const UpdateUser = () => {
                 }
             }
 
-            // --- Phase 3: Cryptographic Credential Update ---
             if (formData.newPassword) {
                 await updatePassword(userId, { 
                     oldPassword: formData.oldPassword, 
@@ -258,8 +252,7 @@ const UpdateUser = () => {
                                         text: i18n.t('delete'), 
                                         style: "destructive",
                                         onPress: () => {
-                                            // Call your delete API here, e.g., deleteMyAccount()
-                                            // Then logout()
+                                            
                                             Alert.alert("Notice", "Hook this up to your delete API route!");
                                         }
                                     }

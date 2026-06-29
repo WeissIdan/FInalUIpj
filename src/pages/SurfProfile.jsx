@@ -124,7 +124,6 @@ const SurfProfile = () => {
         return emojis[sport] || '';
     };
 
-    // Reusable UI Component for mapping selection chips
     const ChipGroup = ({ options, selectedValues, onToggle, singleSelect = false }) => (
         <View style={surfProfileStyles.chipContainer}>
             {options.map(option => {

@@ -15,8 +15,6 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Step 1: Session Hydration. 
-        // Asynchronously restore user state from device storage.
         const hydrateSession = async () => {
             try {
                 const savedUser = await AsyncStorage.getItem('user_session');
@@ -26,30 +24,24 @@ const AuthProvider = ({ children }) => {
             } catch (error) {
                 console.error("[AuthContext] Failed to parse local user session:", error.message);
             } finally {
-                // Unblock the UI render tree once hydration is complete (success or fail)
                 setLoading(false);
             }
         };
 
         hydrateSession();
 
-        // Mutex lock to prevent "Alert Storms" during concurrent asynchronous HTTP failures
         let isAlertShowing = false;
 
-        // Step 2: Global Response Interceptor Registration
         const interceptor = authApi.interceptors.response.use(
             (response) => response,
             async (error) => {
                 if (error.response?.status === 401) {
-                    // Ignore 401s originating from the login endpoint itself (invalid credentials)
                     if (!error.config.url.includes('/login')) {
                         
-                        // Concurrency Lock: Ensure the user is only alerted and logged out once
                         if (!isAlertShowing) {
                             isAlertShowing = true;
                             
-                            // Trigger state change. The Root Navigator will automatically detect this
-                            // and route the user back to the AuthStack.
+
                             await logout();
                             
                             Alert.alert(
@@ -57,13 +49,11 @@ const AuthProvider = ({ children }) => {
                                 "Your session is invalid or has expired. Please log in again."
                             );
                             
-                            // Release the mutex lock after a reasonable timeout
                             setTimeout(() => { isAlertShowing = false; }, 3000);
                         }
                     }
                 }
 
-                // Graceful degradation for Rate Limit violations
                 if (error.response?.status === 429) {
                     Alert.alert("Rate Limit", "Too many requests. Please try again later.");
                 }
@@ -72,7 +62,6 @@ const AuthProvider = ({ children }) => {
             }
         );
         
-        // Cleanup phase: Eject the interceptor to prevent memory leaks if the provider unmounts
         return () => authApi.interceptors.response.eject(interceptor);
     }, []);
 
