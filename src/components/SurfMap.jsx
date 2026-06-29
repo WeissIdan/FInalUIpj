@@ -6,6 +6,7 @@ import * as Location from 'expo-location'; // NEW: Import Expo Location
 import { searchByBoxAPI, getSpotsByBox, getMyFavorites, getWeatherForLocation } from '../api/authService'; 
 import { AuthContext } from '../context/AuthContext';
 import { surfMapStyles } from '../styles/surfMapStyles';
+import i18n from '../localization/translation';
 
 const DEFAULT_CENTER = {
     latitude: 31.0461,
@@ -221,8 +222,7 @@ const SurfMap = ({ searchResults = [] }) => {
             setForecast(response.data); 
         } catch (error) {
             console.error("[Forecast Fetch Error]:", error.response?.data || error.message);
-            Alert.alert("Error", "Failed to fetch complete weather data.");
-        }
+            Alert.alert(i18n.t('error'), i18n.t('failedWeather'));        }
     };
 
     const getCardinalDirection = (angle) => {
@@ -275,12 +275,12 @@ const SurfMap = ({ searchResults = [] }) => {
                             searchesLeft === 0 && surfMapStyles.floatingSearchTextLimit
                         ]}>
                             {isDeepSearching 
-                                ? '🔄 Searching...' 
+                                ? i18n.t('searching')
                                 : searchesLeft === 0 
-                                    ? '⛔ Hourly Limit Reached' 
+                                    ? i18n.t('hourlyLimit')
                                     : searchesLeft !== null 
-                                        ? `🔍 Search deeply (${searchesLeft} left)` 
-                                        : '🔍 Search deeply in this area'
+                                        ? `${i18n.t('searchDeeplyLeft1')}${searchesLeft}${i18n.t('searchDeeplyLeft2')}` 
+                                        : i18n.t('searchDeeplyArea')
                             }
                         </Text>
                     </TouchableOpacity>
@@ -298,8 +298,7 @@ const SurfMap = ({ searchResults = [] }) => {
                 {uniqueMapSpots.map((spot, index) => {                    
                     const lat = spot.lat !== undefined ? Number(spot.lat) : Number(spot.location.coordinates[1]);
                     const lon = spot.lon !== undefined ? Number(spot.lon) : Number(spot.location.coordinates[0]);
-                    const name = spot.name || spot.display_name?.split(',')[0] || 'Unknown Spot';
-                    const isTarget = targetLat !== null && targetLon !== null && 
+                    const name = spot.name || spot.display_name?.split(',')[0] || i18n.t('unknownSpot');                    const isTarget = targetLat !== null && targetLon !== null && 
                                      Number(targetLat) === lat && 
                                      Number(targetLon) === lon;
                     return (
@@ -328,8 +327,7 @@ const SurfMap = ({ searchResults = [] }) => {
                     </TouchableOpacity>
 
                     <View style={surfMapStyles.calloutHeader}>
-                        <Text style={surfMapStyles.calloutLabel}>Spot</Text>
-                        <View style={surfMapStyles.calloutTitleRow}>
+                    <Text style={surfMapStyles.calloutLabel}>{i18n.t('spot')}</Text>                        <View style={surfMapStyles.calloutTitleRow}>
                             <Text style={surfMapStyles.calloutTitle}>{selectedMarker.name}</Text>
                             {user && selectedMarker.matchScore !== undefined && (
                                 <Text style={surfMapStyles.matchScore}>⭐ {selectedMarker.matchScore}/100</Text>
@@ -338,7 +336,7 @@ const SurfMap = ({ searchResults = [] }) => {
                     </View>
 
                     {!forecast ? (
-                        <Text style={surfMapStyles.loadingText}>Loading live weather...</Text>
+                        <Text style={surfMapStyles.loadingText}>{i18n.t('loadingWeather')}</Text>
                     ) : (
                         <View style={surfMapStyles.weatherGrid}>
                             <Text style={[
@@ -348,13 +346,13 @@ const SurfMap = ({ searchResults = [] }) => {
                                 ↓
                             </Text>
                             <View style={surfMapStyles.weatherStat}>
-                                <Text style={surfMapStyles.statLabel}>DIRECTION</Text>
+                                <Text style={surfMapStyles.statLabel}>{i18n.t('direction')}</Text>
                                 <Text style={surfMapStyles.statValue}>
                                     {forecast.wind_direction_10m?.[0]}° ({getCardinalDirection(forecast.wind_direction_10m?.[0])})
                                 </Text>
                             </View>
                             <View style={surfMapStyles.weatherStat}>
-                                <Text style={surfMapStyles.statLabel}>SPEED</Text>
+                                <Text style={surfMapStyles.statLabel}>{i18n.t('speed')}</Text>
                                 <Text style={surfMapStyles.statValue}>
                                     {Math.round(forecast.wind_speed_10m?.[0] || 0)} kts
                                 </Text>
@@ -365,7 +363,7 @@ const SurfMap = ({ searchResults = [] }) => {
                     {forecast?.wave_height && forecast.wave_height[0] !== null && (
                         <View style={surfMapStyles.wavesContainer}>
                             <Text style={surfMapStyles.wavesText}>
-                                🌊 Waves: <Text style={surfMapStyles.wavesBold}>{forecast.wave_height[0]}m</Text>
+                                🌊 {i18n.t('waves')}: <Text style={surfMapStyles.wavesBold}>{forecast.wave_height[0]}m</Text>
                             </Text>
                         </View>
                     )}
