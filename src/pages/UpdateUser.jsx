@@ -115,25 +115,25 @@ const UpdateUser = () => {
                     style={globalStyles.subNavBtn} 
                     onPress={() => navigation.navigate('SurfProfile')}
                 >
-                    <Text style={globalStyles.subNavBtnText}>Surf Gear</Text>
+                    <Text style={globalStyles.subNavBtnText}>{i18n.t('surfGear')}</Text>
                 </TouchableOpacity>
                 
                 <TouchableOpacity style={[globalStyles.subNavBtn, globalStyles.subNavBtnActive]}>
-                    <Text style={globalStyles.subNavBtnTextActive}>Account</Text>
+                    <Text style={globalStyles.subNavBtnTextActive}>{i18n.t('account')}</Text>
                 </TouchableOpacity>
                 
                 <TouchableOpacity style={globalStyles.subNavBtn} onPress={logout}>
-                    <Text style={globalStyles.logoutBtnText}>Logout</Text>
+                    <Text style={globalStyles.logoutBtnText}>{i18n.t('logout')}</Text>
                 </TouchableOpacity>
             </View>
 
             
             <View style={globalStyles.authCard}>
-                <Text style={globalStyles.authTitle}>Profile Settings</Text>
+                <Text style={globalStyles.authTitle}>{i18n.t('profileSettings')}</Text>
 
                 {errorMsg && (
                     <View style={globalStyles.errorBanner}>
-                        <Text style={globalStyles.errorBannerTitle}>Profile Error</Text>
+                        <Text style={globalStyles.errorBannerTitle}>{i18n.t('profileError')}</Text>
                         <Text style={globalStyles.errorBannerText}>{errorMsg}</Text>
                     </View>
                 )}
@@ -152,7 +152,7 @@ const UpdateUser = () => {
 
                     <View>
                         <TextInput 
-                            placeholder="Last Name" 
+                            placeholder={i18n.t('lastName')} 
                             value={formData.lastname} 
                             onChangeText={(val) => handleChange('lastname', val)}
                             style={[globalStyles.input, errors.lastname && globalStyles.inputError]} 
@@ -162,7 +162,7 @@ const UpdateUser = () => {
 
                     <View>
                         <TextInput 
-                            placeholder="Phone Number"
+                            placeholder={i18n.t('phoneNumber')}
                             keyboardType="phone-pad"
                             value={formData.phonenum} 
                             onChangeText={(val) => handleChange('phonenum', val)}
@@ -173,7 +173,7 @@ const UpdateUser = () => {
 
                     <View>
                         <TextInput 
-                            placeholder="Birthday (YYYY-MM-DD)" 
+                            placeholder={i18n.t('birthday')}
                             value={formData.birthday} 
                             onChangeText={(val) => handleChange('birthday', val)}
                             style={[globalStyles.input, errors.birthday && globalStyles.inputError]} 
@@ -187,7 +187,7 @@ const UpdateUser = () => {
                         onPress={() => setShowPasswordFields(!showPasswordFields)}
                     >
                         <Text style={globalStyles.secondaryButtonText}>
-                            {showPasswordFields ? "− Cancel Password Change" : "+ Change Password"}
+                            {showPasswordFields ? i18n.t('cancelPassword') : i18n.t('changePassword')}
                         </Text>
                     </TouchableOpacity>
 
@@ -197,7 +197,7 @@ const UpdateUser = () => {
                             <View>
                                 <TextInput 
                                     secureTextEntry
-                                    placeholder="Current Password" 
+                                    placeholder={i18n.t('currentPassword')}
                                     value={formData.oldPassword}
                                     onChangeText={(val) => handleChange('oldPassword', val)}
                                     style={[globalStyles.input, errors.oldPassword && globalStyles.inputError]} 
@@ -208,7 +208,7 @@ const UpdateUser = () => {
                             <View>
                                 <TextInput 
                                     secureTextEntry
-                                    placeholder="New Password" 
+                                    placeholder={i18n.t('newPassword')}
                                     value={formData.newPassword}
                                     onChangeText={(val) => handleChange('newPassword', val)}
                                     style={[globalStyles.input, errors.newPassword && globalStyles.inputError]} 
@@ -219,7 +219,7 @@ const UpdateUser = () => {
                             <View>
                                 <TextInput 
                                     secureTextEntry
-                                    placeholder="Confirm New Password"
+                                    placeholder={i18n.t('confirmNewPassword')}
                                     value={formData.confirmPassword}
                                     onChangeText={(val) => handleChange('confirmPassword', val)}
                                     style={[globalStyles.input, errors.confirmPassword && globalStyles.inputError]} 
@@ -238,7 +238,7 @@ const UpdateUser = () => {
                         {loading ? (
                             <ActivityIndicator size="small" color="#ffffff" />
                         ) : (
-                            <Text style={globalStyles.primaryButtonText}>Save All Changes</Text>
+                            <Text style={globalStyles.primaryButtonText}>{i18n.t('saveAllChanges')}</Text>
                         )}
                     </TouchableOpacity>
 
@@ -247,12 +247,12 @@ const UpdateUser = () => {
                         style={globalStyles.dangerBtn}
                         onPress={() => {
                             Alert.alert(
-                                "Delete Account",
-                                "Are you sure? This action cannot be undone.",
+                                i18n.t('deleteAccount'), 
+                                i18n.t('deleteAccountConfirm'),
                                 [
-                                    { text: "Cancel", style: "cancel" },
+                                    { text: i18n.t('cancel'), style: "cancel" },
                                     { 
-                                        text: "Delete", 
+                                        text: i18n.t('delete'), 
                                         style: "destructive",
                                         onPress: () => {
                                             // Call your delete API here, e.g., deleteMyAccount()

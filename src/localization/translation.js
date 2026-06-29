@@ -7,7 +7,8 @@ import he from './languages/he.json';
 
 const i18n = new I18n({ en, he });
 
-i18n.locale = getLocales()[0].languageCode;
+const currentLang = getLocales()[0].languageCode;
+i18n.locale = currentLang === 'iw' ? 'he' : currentLang;
 i18n.enableFallback = true;
 i18n.defaultLocale = "en";
 
