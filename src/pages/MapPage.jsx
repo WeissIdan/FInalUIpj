@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, ActivityIndicator, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import SurfMap from '../components/SurfMap'; // We will build this next
@@ -6,6 +6,8 @@ import SearchBar from '../components/SearchBar'; // We will build this next
 import { searchLocations } from '../api/authService';
 import { mapStyles } from '../styles/mapStyles';
 import { theme } from '../styles/globalStyles';
+import { ThemeContext } from '../context/ThemeContext';
+
 
 /*
  * Interactive Geographic Explorer (Container Component).
@@ -14,6 +16,7 @@ import { theme } from '../styles/globalStyles';
  * pushing query results down to the map layer for rendering.
  */
 const MapPage = () => {
+    const { colors } = useContext(ThemeContext);
     const [manualResults, setManualResults] = useState([]); 
     const [loading, setLoading] = useState(false);
     
@@ -39,7 +42,7 @@ const MapPage = () => {
     };
 
     return (
-        <SafeAreaView style={mapStyles.container} edges={['top']}>
+        <SafeAreaView style={[mapStyles.container, { backgroundColor: colors.background }]} edges={['top']}>
             
             {/* Overlay Search Interface */}
             <View style={mapStyles.header}>

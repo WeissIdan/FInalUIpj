@@ -8,6 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 import { surfMapStyles } from '../styles/surfMapStyles';
 import i18n from '../localization/translation';
 
+
 const DEFAULT_CENTER = {
     latitude: 31.0461,
     longitude: 34.8516,
@@ -27,7 +28,7 @@ const SurfMap = ({ searchResults = [] }) => {
     const route = useRoute();
     const mapRef = useRef(null);
     const { user } = useContext(AuthContext);
-    
+
     const [discoverySpots, setDiscoverySpots] = useState([]); 
     const [urlLocation, setUrlLocation] = useState(null); 
     const [favoriteObjects, setFavoriteObjects] = useState([]);

@@ -5,12 +5,15 @@ import { AuthContext } from '../context/AuthContext.jsx';
 import { globalStyles } from '../styles/globalStyles'; 
 import { updateMyProfile, getMyProfile } from '../api/authService.js';
 import { surfProfileStyles } from '../styles/surfProfileStyles';
+import { ThemeContext } from '../context/ThemeContext';
 import i18n from '../localization/translation';
 const SurfProfile = () => {
     const navigation = useNavigation();
     const { logout } = useContext(AuthContext); 
+    const { colors } = useContext(ThemeContext);
     const [errorMsg, setErrorMsg] = useState(null);
     const [loading, setLoading] = useState(false);
+    
     
     const [profile, setProfile] = useState({
         user: '',
@@ -142,8 +145,7 @@ const SurfProfile = () => {
     );
 
     return (
-        <ScrollView contentContainerStyle={surfProfileStyles.scrollContainer} keyboardShouldPersistTaps="handled">
-            
+        <ScrollView contentContainerStyle={[surfProfileStyles.scrollContainer, { backgroundColor: colors.background }]}>            
             <View style={globalStyles.profileSubNav}>
                 <TouchableOpacity style={[globalStyles.subNavBtn, globalStyles.subNavBtnActive]}>
                     <Text style={globalStyles.subNavBtnTextActive}>{i18n.t('surfGear')}</Text>

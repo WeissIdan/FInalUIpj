@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, Keyboard } from 'r
 import { AuthContext } from '../context/AuthContext';
 import { getMyProfile } from '../api/authService';
 import { searchStyles } from '../styles/searchStyles';
+import { ThemeContext } from '../context/ThemeContext';
 
 /*
  * Intelligent Geographic Search Component.
@@ -12,6 +13,7 @@ import { searchStyles } from '../styles/searchStyles';
  */
 const SearchBar = ({ onSearch, placeholder = "Search for a beach, city..." }) => {
     const { user } = useContext(AuthContext);
+    const { colors } = useContext(ThemeContext);
     const [query, setQuery] = useState('');
     
     // UI State for simulating CSS :focus-within
@@ -65,7 +67,7 @@ const SearchBar = ({ onSearch, placeholder = "Search for a beach, city..." }) =>
     const emojis = { WaveSurfing: '🌊', WindSurfing: '🌬️', WingSurfing: '🪂', KiteSurfing: '🪁' };
 
     return (
-        <View style={searchStyles.container}>
+        <View style={[searchStyles.container, { backgroundColor: colors.background }]}>
             
             {/* Conditional Rendering: Horizontal scrolling chips replacing the Web Dropdown */}
             {user && fullProfile?.preferredTypes?.length > 0 && (

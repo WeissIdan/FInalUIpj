@@ -4,9 +4,11 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../context/AuthContext.jsx';
 import { getMyFavorites, getWeatherForLocation } from '../api/authService.js';
 import { homeStyles } from '../styles/homeStyles';
+import { ThemeContext } from '../context/ThemeContext';
 
 const HomePage = () => {
     const { user } = useContext(AuthContext);
+    const { colors } = useContext(ThemeContext);
     const [favorites, setFavorites] = useState([]);
     const [forecasts, setForecasts] = useState({});
     const [loading, setLoading] = useState(true);
@@ -66,7 +68,7 @@ const HomePage = () => {
     };
 
     return (
-        <View style={homeStyles.wrapper}>
+        <View style={[homeStyles.wrapper, { backgroundColor: colors.background }]}>
             <ScrollView contentContainerStyle={homeStyles.scrollContainer}>
                 
                 <View style={homeStyles.header}>

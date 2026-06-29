@@ -5,6 +5,8 @@ import { updateUserProfile, updatePassword } from '../api/authService.js';
 import { AuthContext } from '../context/AuthContext.jsx';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from '../localization/translation';
+import { ThemeContext } from '../context/ThemeContext';
+
 import { 
     validatePhone, validateName, validateBirthday, validatePassword 
 } from '../utils/validators.js';
@@ -18,6 +20,7 @@ import { globalStyles } from '../styles/globalStyles';
  */
 const UpdateUser = () => {
     const { user, logout, login } = useContext(AuthContext);
+    const { colors } = useContext(ThemeContext);
     const navigation = useNavigation();
 
     const [formData, setFormData] = useState({
@@ -109,7 +112,7 @@ const UpdateUser = () => {
     };
 
     return (
-        <ScrollView contentContainerStyle={globalStyles.authPageWrapper} keyboardShouldPersistTaps="handled">
+        <ScrollView contentContainerStyle={[globalStyles.authPageWrapper, { backgroundColor: colors.background }]} keyboardShouldPersistTaps="handled">
             <View style={[globalStyles.profileSubNav, { width: '100%', maxWidth: 400 }]}>
                 <TouchableOpacity 
                     style={globalStyles.subNavBtn} 
@@ -128,7 +131,7 @@ const UpdateUser = () => {
             </View>
 
             
-            <View style={globalStyles.authCard}>
+            <View style={[globalStyles.authCard, { backgroundColor: colors.background }]}>
                 <Text style={globalStyles.authTitle}>{i18n.t('profileSettings')}</Text>
 
                 {errorMsg && (
