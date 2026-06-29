@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { updateUserProfile, updatePassword } from '../api/authService.js';
 import { AuthContext } from '../context/AuthContext.jsx';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import i18n from '../localization/translation';
 import { 
     validatePhone, validateName, validateBirthday, validatePassword 
 } from '../utils/validators.js';
@@ -141,7 +142,7 @@ const UpdateUser = () => {
                     {/* Demographic Fields */}
                     <View>
                         <TextInput 
-                            placeholder="First Name" 
+                            placeholder={i18n.t('firstName')} 
                             value={formData.firstname} 
                             onChangeText={(val) => handleChange('firstname', val)}
                             style={[globalStyles.input, errors.firstname && globalStyles.inputError]} 
