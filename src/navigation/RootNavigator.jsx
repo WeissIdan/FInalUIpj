@@ -10,9 +10,9 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Verify from '../pages/Verify';
 import HomePage from '../pages/HomePage';
-// import MapPage from '../pages/MapPage';
-// import SurfProfile from '../pages/SurfProfile';
-// import UpdateUser from '../pages/UpdateUser';
+import MapPage from '../pages/MapPage';
+import SurfProfile from '../pages/SurfProfile';
+import UpdateUser from '../pages/UpdateUser';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -27,19 +27,19 @@ const AuthStack = () => (
 );
 
 // 2. Profile Stack (Nested to group profile management views)
-// const ProfileStack = () => (
-//     <Stack.Navigator screenOptions={{ headerShown: false }}>
-//         <Stack.Screen name="SurfProfile" component={SurfProfile} />
-//         <Stack.Screen name="UpdateUser" component={UpdateUser} />
-//     </Stack.Navigator>
-// );
+const ProfileStack = () => (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="SurfProfile" component={SurfProfile} />
+        <Stack.Screen name="UpdateUser" component={UpdateUser} />
+    </Stack.Navigator>
+);
 
 // 3. Main Application Tabs (Protected)
 const AppTabs = () => (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Dashboard" component={HomePage} />
-        {/* <Tab.Screen name="Explorer" component={MapPage} />
-        <Tab.Screen name="Profile" component={ProfileStack} /> */}
+        <Tab.Screen name="Explorer" component={MapPage} />
+        <Tab.Screen name="Profile" component={ProfileStack} />
     </Tab.Navigator>
 );
 

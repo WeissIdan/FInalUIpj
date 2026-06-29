@@ -146,5 +146,57 @@ export const globalStyles = StyleSheet.create({
     errorBannerText: {
         fontSize: 14,
         color: '#333',
+    },
+    // Sub-Navigation Menu (For Profile Tabs)
+    profileSubNav: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 15,
+        paddingHorizontal: 5,
+        marginBottom: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#eee',
+    },
+    subNavBtn: {
+        paddingVertical: 8,
+        paddingHorizontal: 15,
+        borderRadius: 20,
+        backgroundColor: '#f0f0f0',
+    },
+    subNavBtnActive: {
+        backgroundColor: theme.colors.primaryBlue,
+    },
+    subNavBtnText: {
+        color: '#555',
+        fontWeight: 'bold',
+        fontSize: 13,
+    },
+    subNavBtnTextActive: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 13,
+    },
+    logoutBtnText: {
+        color: theme.colors.errorRed,
+        fontWeight: 'bold',
+        fontSize: 13,
+    },
+
+    // Danger Zone
+    dangerBtn: {
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        borderColor: theme.colors.errorRed,
+        width: '100%',
+        padding: 15,
+        borderRadius: 8,
+        alignItems: 'center',
+        marginTop: 30,
+    },
+    dangerBtnText: {
+        color: theme.colors.errorRed,
+        fontWeight: 'bold',
+        fontSize: 16,
     }
 });

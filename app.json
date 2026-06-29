@@ -19,6 +19,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "SurfPoint needs your location to show you nearby surfing and windsurfing spots."
+        }
+      ]
+    ]
   }
 }
