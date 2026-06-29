@@ -59,5 +59,21 @@
   "max": "Max",
   "to": "to",
   "success": "Success",
-  "errorSaving": "Error saving profile:"
+  "errorSaving": "Error saving profile:",
+  "tabDashboard": "Dashboard",
+  "tabExplorer": "Explorer",
+  "tabProfile": "Profile",
+  "searchDeeplyArea": "🔍 Search deeply in this area",
+  "searchDeeplyLeft1": "🔍 Search deeply (",
+  "searchDeeplyLeft2": " left)",
+  "searching": "🔄 Searching...",
+  "hourlyLimit": "⛔ Hourly Limit Reached",
+  "spot": "Spot",
+  "unknownSpot": "Unknown Spot",
+  "loadingWeather": "Loading live weather...",
+  "direction": "DIRECTION",
+  "speed": "SPEED",
+  "waves": "Waves:",
+  "error": "Error",
+  "failedWeather": "Failed to fetch complete weather data."
 }

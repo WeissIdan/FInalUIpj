@@ -59,5 +59,21 @@
   "max": "מקסימום",
   "to": "עד",
   "success": "הצלחה",
-  "errorSaving": "שגיאה בשמירת פרופיל:"
+  "errorSaving": "שגיאה בשמירת פרופיל:",
+  "tabDashboard": "לוח בקרה",
+  "tabExplorer": "חיפוש מפה",
+  "tabProfile": "פרופיל",
+  "searchDeeplyArea": "🔍 חפש לעומק באזור זה",
+  "searchDeeplyLeft1": "🔍 חפש לעומק (נותרו ",
+  "searchDeeplyLeft2": ")",
+  "searching": "🔄 מחפש...",
+  "hourlyLimit": "⛔ הגעת למגבלת החיפושים",
+  "spot": "מיקום",
+  "unknownSpot": "מיקום לא ידוע",
+  "loadingWeather": "טוען נתוני מזג אוויר בזמן אמת...",
+  "direction": "כיוון",
+  "speed": "מהירות",
+  "waves": "גלים:",
+  "error": "שגיאה",
+  "failedWeather": "שגיאה בטעינת נתוני מזג האוויר."
 }

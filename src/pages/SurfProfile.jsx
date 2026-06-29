@@ -5,7 +5,7 @@ import { AuthContext } from '../context/AuthContext.jsx';
 import { globalStyles } from '../styles/globalStyles'; 
 import { updateMyProfile, getMyProfile } from '../api/authService.js';
 import { surfProfileStyles } from '../styles/surfProfileStyles';
-
+import i18n from '../localization/translation';
 const SurfProfile = () => {
     const navigation = useNavigation();
     const { logout } = useContext(AuthContext); 
@@ -146,22 +146,22 @@ const SurfProfile = () => {
             
             <View style={globalStyles.profileSubNav}>
                 <TouchableOpacity style={[globalStyles.subNavBtn, globalStyles.subNavBtnActive]}>
-                    <Text style={globalStyles.subNavBtnTextActive}>Surf Gear</Text>
+                    <Text style={globalStyles.subNavBtnTextActive}>{i18n.t('surfGear')}</Text>
                 </TouchableOpacity>
                 
                 <TouchableOpacity 
                     style={globalStyles.subNavBtn} 
                     onPress={() => navigation.navigate('UpdateUser')}
                 >
-                    <Text style={globalStyles.subNavBtnText}>Account</Text>
+                    <Text style={globalStyles.subNavBtnText}>{i18n.t('account')}</Text>
                 </TouchableOpacity>
                 
                 <TouchableOpacity style={globalStyles.subNavBtn} onPress={logout}>
-                    <Text style={globalStyles.logoutBtnText}>Logout</Text>
+                    <Text style={globalStyles.logoutBtnText}>{i18n.t('logout')}</Text>
                 </TouchableOpacity>
             </View>
 
-            <Text style={surfProfileStyles.header}>Surf Profile & Gear</Text>
+            <Text style={surfProfileStyles.header}>{i18n.t('surfProfileTitle')}</Text>
 
             {errorMsg && (
                 <View style={surfProfileStyles.errorBanner}>
@@ -171,10 +171,10 @@ const SurfProfile = () => {
 
             {/* 1. CORE EXPERIENCE & DISCIPLINE SELECTION */}
             <View style={surfProfileStyles.section}>
-                <Text style={surfProfileStyles.sectionTitle}>Experience & Sports</Text>
+                <Text style={surfProfileStyles.sectionTitle}>{i18n.t('experienceSports')}</Text>
                 
                 <View style={surfProfileStyles.inputGroup}>
-                    <Text style={surfProfileStyles.label}>Skill Level</Text>
+                    <Text style={surfProfileStyles.label}>{i18n.t('skillLevel')}</Text>
                     <ChipGroup 
                         options={['Beginner', 'Intermediate', 'Advanced', 'Pro']}
                         selectedValues={profile.skillLevel}
@@ -184,7 +184,7 @@ const SurfProfile = () => {
                 </View>
 
                 <View style={surfProfileStyles.inputGroup}>
-                    <Text style={surfProfileStyles.label}>Preferred Sports</Text>
+                    <Text style={surfProfileStyles.label}>{i18n.t('preferredSports')}</Text>
                     <ChipGroup 
                         options={['WaveSurfing', 'WindSurfing', 'WingSurfing', 'KiteSurfing']}
                         selectedValues={profile.preferredTypes}
@@ -195,11 +195,11 @@ const SurfProfile = () => {
 
             {/* 2. SUB-DISCIPLINE STYLE PREFERENCES */}
             <View style={surfProfileStyles.section}>
-                <Text style={surfProfileStyles.sectionTitle}>Style Preferences</Text>
-                
+                <Text style={surfProfileStyles.sectionTitle}>{i18n.t('stylePreferences')}</Text>
+
                 {profile.preferredTypes.includes('WaveSurfing') && (
                     <View style={surfProfileStyles.inputGroup}>
-                        <Text style={surfProfileStyles.label}>🌊 Wave Styles</Text>
+                        <Text style={surfProfileStyles.label}>🌊 {i18n.t('waveStyles')}</Text>
                         <ChipGroup 
                             options={['Shortboard', 'Longboard', 'Fish', 'Foiling', 'Funboard', 'Gun', 'Hybrid']}
                             selectedValues={profile.preferredWaveSurfStyles}
@@ -210,7 +210,7 @@ const SurfProfile = () => {
 
                 {profile.preferredTypes.includes('WindSurfing') && (
                     <View style={surfProfileStyles.inputGroup}>
-                        <Text style={surfProfileStyles.label}>🌬️ Wind Styles</Text>
+                        <Text style={surfProfileStyles.label}>🌬️ {i18n.t('windStyles')}</Text>
                         <ChipGroup 
                             options={['Freestyle', 'Freewave', 'Foiling', 'Race', 'Wave Riding']}
                             selectedValues={profile.preferredWindSurfStyles}
@@ -221,7 +221,7 @@ const SurfProfile = () => {
 
                 {profile.preferredTypes.includes('WingSurfing') && (
                     <View style={surfProfileStyles.inputGroup}>
-                        <Text style={surfProfileStyles.label}>🪂 Wing Styles</Text>
+                        <Text style={surfProfileStyles.label}>🪂 {i18n.t('wingStyles')}</Text>
                         <ChipGroup 
                             options={['Freestyle', 'Freewave', 'Race', 'Wave Riding']}
                             selectedValues={profile.preferredWingSurfStyles}
@@ -232,7 +232,7 @@ const SurfProfile = () => {
 
                 {profile.preferredTypes.includes('KiteSurfing') && (
                     <View style={surfProfileStyles.inputGroup}>
-                        <Text style={surfProfileStyles.label}>🪁 Kite Styles</Text>
+                        <Text style={surfProfileStyles.label}>🪁 {i18n.t('kiteStyles')}</Text>
                         <ChipGroup 
                             options={['Freestyle', 'Freewave', 'Foiling', 'Race', 'Wave Riding']}
                             selectedValues={profile.preferredKiteSurfStyles}
@@ -244,16 +244,16 @@ const SurfProfile = () => {
 
             {/* 3. PHYSICAL EQUIPMENT & DIMENSIONS */}
             <View style={surfProfileStyles.section}>
-                <Text style={surfProfileStyles.sectionTitle}>Gear Dimensions</Text>
+                <Text style={surfProfileStyles.sectionTitle}>{i18n.t('gearDimensions')}</Text>
                 
                 {profile.preferredTypes.length === 0 ? (
-                    <Text style={surfProfileStyles.subLabel}>Please select a sport above to enter your gear details.</Text>
+                    <Text style={surfProfileStyles.subLabel}>{i18n.t('selectSportGear')}</Text>
                 ) : (
                     <View>
                         {/* WAVE SURFING GEAR */}
                         {profile.preferredTypes.includes('WaveSurfing') && (
                             <View style={surfProfileStyles.gearCard}>
-                                <Text style={surfProfileStyles.cardTitle}>🌊 Wave Board</Text>
+                                <Text style={surfProfileStyles.cardTitle}>🌊 {i18n.t('waveBoard')}</Text>
                                 
                                 <View style={surfProfileStyles.inputGroup}>
                                     <Text style={surfProfileStyles.label}>Length (ft) / Width (in) / Vol (L)</Text>
@@ -265,7 +265,7 @@ const SurfProfile = () => {
                                 </View>
 
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Fin Setup</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('finSetup')}</Text>
                                     <ChipGroup 
                                         options={['Single Fin', 'Twin Fin', 'Thruster', 'Quad Fin', 'Five Fin']}
                                         selectedValues={profile.wavefinType}
@@ -276,10 +276,10 @@ const SurfProfile = () => {
 
                                 {profile.preferredWaveSurfStyles?.includes('Foiling') && (
                                     <View style={surfProfileStyles.foilSetup}>
-                                        <Text style={surfProfileStyles.cardTitle}>🛸 Wave Foil Setup</Text>
+                                        <Text style={surfProfileStyles.cardTitle}>🛸 {i18n.t('waveFoilSetup')}</Text>
                                         
                                         <View style={surfProfileStyles.inputGroup}>
-                                            <Text style={surfProfileStyles.label}>Front / Back Wing (cm²)</Text>
+                                            <Text style={surfProfileStyles.label}>{i18n.t('frontBackWing')}</Text>
                                             <View style={surfProfileStyles.multiInputRow}>
                                                 <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsWave?.frontWingSize || '')} onChangeText={(val) => handleFoilChange('foildetailsWave', 'frontWingSize', val ? Number(val) : 0)} />
                                                 <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsWave?.backWingSize || '')} onChangeText={(val) => handleFoilChange('foildetailsWave', 'backWingSize', val ? Number(val) : 0)} />
@@ -287,7 +287,7 @@ const SurfProfile = () => {
                                         </View>
 
                                         <View style={surfProfileStyles.inputGroup}>
-                                            <Text style={surfProfileStyles.label}>Mast (cm) & Material</Text>
+                                            <Text style={surfProfileStyles.label}>{i18n.t('mastMaterial')}</Text>
                                             <View style={surfProfileStyles.multiInputRow}>
                                                 <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsWave?.mastLength || '')} onChangeText={(val) => handleFoilChange('foildetailsWave', 'mastLength', val ? Number(val) : 0)} />
                                             </View>
@@ -308,15 +308,15 @@ const SurfProfile = () => {
                         {/* WIND SURFING GEAR */}
                         {profile.preferredTypes.includes('WindSurfing') && (
                             <View style={surfProfileStyles.gearCard}>
-                                <Text style={surfProfileStyles.cardTitle}>🌬️ Windsurf Gear</Text>
+                                <Text style={surfProfileStyles.cardTitle}>🌬️ {i18n.t('windsurfGear')}</Text>
                                 
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Ideal Sail Size (m²)</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('sailSize')}</Text>
                                     <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.sailSize)} onChangeText={(val) => setProfile({...profile, sailSize: val ? Number(val) : ''})} />
                                 </View>
 
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Board Vol (L) / Len (cm) / Wid (cm)</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('boardDimsCm')}</Text>
                                     <View style={surfProfileStyles.multiInputRow}>
                                         <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.windboardVolume)} onChangeText={(val) => setProfile({...profile, windboardVolume: val ? Number(val) : ''})} />
                                         <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.windboardLength)} onChangeText={(val) => setProfile({...profile, windboardLength: val ? Number(val) : ''})} />
@@ -325,7 +325,7 @@ const SurfProfile = () => {
                                 </View>
 
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Fin Setup</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('finSetup')}</Text>
                                     <ChipGroup 
                                         options={['Single Fin', 'Twin Fin', 'Thruster', 'Quad Fin', 'Five Fin']}
                                         selectedValues={profile.windfinType}
@@ -336,10 +336,10 @@ const SurfProfile = () => {
 
                                 {profile.preferredWindSurfStyles?.includes('Foiling') && (
                                     <View style={surfProfileStyles.foilSetup}>
-                                        <Text style={surfProfileStyles.cardTitle}>🛸 Wind Foil Setup</Text>
-                                        
+                                        <Text style={surfProfileStyles.cardTitle}>🛸 {i18n.t('windFoilSetup')}</Text>
+
                                         <View style={surfProfileStyles.inputGroup}>
-                                            <Text style={surfProfileStyles.label}>Front / Back Wing (cm²)</Text>
+                                            <Text style={surfProfileStyles.label}>{i18n.t('frontBackWing')}</Text>
                                             <View style={surfProfileStyles.multiInputRow}>
                                                 <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsWind?.frontWingSize || '')} onChangeText={(val) => handleFoilChange('foildetailsWind', 'frontWingSize', val ? Number(val) : 0)} />
                                                 <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsWind?.backWingSize || '')} onChangeText={(val) => handleFoilChange('foildetailsWind', 'backWingSize', val ? Number(val) : 0)} />
@@ -347,7 +347,7 @@ const SurfProfile = () => {
                                         </View>
 
                                         <View style={surfProfileStyles.inputGroup}>
-                                            <Text style={surfProfileStyles.label}>Mast (cm) & Material</Text>
+                                            <Text style={surfProfileStyles.label}>{i18n.t('mastMaterial')}</Text>
                                             <View style={surfProfileStyles.multiInputRow}>
                                                 <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsWind?.mastLength || '')} onChangeText={(val) => handleFoilChange('foildetailsWind', 'mastLength', val ? Number(val) : 0)} />
                                             </View>
@@ -368,15 +368,15 @@ const SurfProfile = () => {
                         {/* WING SURFING GEAR */}
                         {profile.preferredTypes.includes('WingSurfing') && (
                             <View style={surfProfileStyles.gearCard}>
-                                <Text style={surfProfileStyles.cardTitle}>🪂 Wing & Foil Board</Text>
-                                
+                                <Text style={surfProfileStyles.cardTitle}>🪂 {i18n.t('wingFoilBoard')}</Text>
+
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Ideal Wing Size (m²)</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('wingSize')}</Text>
                                     <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.wingSize)} onChangeText={(val) => setProfile({...profile, wingSize: val ? Number(val) : ''})} />
                                 </View>
 
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Board Vol (L) / Len (ft) / Wid (in)</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('boardDimsCm')}</Text>
                                     <View style={surfProfileStyles.multiInputRow}>
                                         <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.wingboardVolume)} onChangeText={(val) => setProfile({...profile, wingboardVolume: val ? Number(val) : ''})} />
                                         <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.wingboardLength)} onChangeText={(val) => setProfile({...profile, wingboardLength: val ? Number(val) : ''})} />
@@ -385,10 +385,10 @@ const SurfProfile = () => {
                                 </View>
 
                                 <View style={surfProfileStyles.foilSetup}>
-                                    <Text style={surfProfileStyles.cardTitle}>🛸 Wing Foil Setup</Text>
+                                    <Text style={surfProfileStyles.cardTitle}>🛸 {i18n.t('wingFoilSetup')}</Text>
                                     
                                     <View style={surfProfileStyles.inputGroup}>
-                                        <Text style={surfProfileStyles.label}>Front / Back Wing (cm²)</Text>
+                                        <Text style={surfProfileStyles.label}>{i18n.t('frontBackWing')}</Text>
                                         <View style={surfProfileStyles.multiInputRow}>
                                             <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsWing?.frontWingSize || '')} onChangeText={(val) => handleFoilChange('foildetailsWing', 'frontWingSize', val ? Number(val) : 0)} />
                                             <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsWing?.backWingSize || '')} onChangeText={(val) => handleFoilChange('foildetailsWing', 'backWingSize', val ? Number(val) : 0)} />
@@ -396,7 +396,7 @@ const SurfProfile = () => {
                                     </View>
 
                                     <View style={surfProfileStyles.inputGroup}>
-                                        <Text style={surfProfileStyles.label}>Mast (cm) & Material</Text>
+                                        <Text style={surfProfileStyles.label}>{i18n.t('mastMaterial')}</Text>
                                         <View style={surfProfileStyles.multiInputRow}>
                                             <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsWing?.mastLength || '')} onChangeText={(val) => handleFoilChange('foildetailsWing', 'mastLength', val ? Number(val) : 0)} />
                                         </View>
@@ -416,15 +416,15 @@ const SurfProfile = () => {
                         {/* KITE SURFING GEAR */}
                         {profile.preferredTypes.includes('KiteSurfing') && (
                             <View style={surfProfileStyles.gearCard}>
-                                <Text style={surfProfileStyles.cardTitle}>🪁 Kite Gear</Text>
-                                
+                                <Text style={surfProfileStyles.cardTitle}>🪁 {i18n.t('kiteGear')}</Text>
+
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Ideal Kite Size (m²)</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('kiteSize')}</Text>
                                     <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.kiteSize)} onChangeText={(val) => setProfile({...profile, kiteSize: val ? Number(val) : ''})} />
                                 </View>
 
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Board Vol (L) / Len (cm) / Wid (cm)</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('boardDimsCm')}</Text>
                                     <View style={surfProfileStyles.multiInputRow}>
                                         <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.kiteboardVolume)} onChangeText={(val) => setProfile({...profile, kiteboardVolume: val ? Number(val) : ''})} />
                                         <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.kiteboardLength)} onChangeText={(val) => setProfile({...profile, kiteboardLength: val ? Number(val) : ''})} />
@@ -434,10 +434,10 @@ const SurfProfile = () => {
 
                                 {profile.preferredKiteSurfStyles?.includes('Foiling') && (
                                     <View style={surfProfileStyles.foilSetup}>
-                                        <Text style={surfProfileStyles.cardTitle}>🛸 Kite Foil Setup</Text>
+                                        <Text style={surfProfileStyles.cardTitle}>🛸 {i18n.t('kiteFoilSetup')}</Text>
                                         
                                         <View style={surfProfileStyles.inputGroup}>
-                                            <Text style={surfProfileStyles.label}>Front / Back Wing (cm²)</Text>
+                                            <Text style={surfProfileStyles.label}>{i18n.t('frontBackWing')}</Text>
                                             <View style={surfProfileStyles.multiInputRow}>
                                                 <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsKite?.frontWingSize || '')} onChangeText={(val) => handleFoilChange('foildetailsKite', 'frontWingSize', val ? Number(val) : 0)} />
                                                 <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsKite?.backWingSize || '')} onChangeText={(val) => handleFoilChange('foildetailsKite', 'backWingSize', val ? Number(val) : 0)} />
@@ -445,7 +445,7 @@ const SurfProfile = () => {
                                         </View>
 
                                         <View style={surfProfileStyles.inputGroup}>
-                                            <Text style={surfProfileStyles.label}>Mast (cm) & Material</Text>
+                                            <Text style={surfProfileStyles.label}>{i18n.t('mastMaterial')}</Text>
                                             <View style={surfProfileStyles.multiInputRow}>
                                                 <TextInput keyboardType="numeric" style={surfProfileStyles.flexInput} value={String(profile.foildetailsKite?.mastLength || '')} onChangeText={(val) => handleFoilChange('foildetailsKite', 'mastLength', val ? Number(val) : 0)} />
                                             </View>
@@ -476,10 +476,10 @@ const SurfProfile = () => {
                     <View>
                         {profile.preferredTypes.map(sport => (
                             <View key={sport} style={surfProfileStyles.gearCard}>
-                                <Text style={surfProfileStyles.cardTitle}>{getSportEmoji(sport)} {sport} Conditions</Text>
+                                <Text style={surfProfileStyles.cardTitle}>{getSportEmoji(sport)} {sport} {i18n.t('conditions')}</Text>
                                 
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Wave Height (m) [Min to Max]</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('waveHeight')}</Text>
                                     <View style={surfProfileStyles.multiInputRow}>
                                         <TextInput 
                                             keyboardType="numeric" style={surfProfileStyles.flexInput} placeholder="Min" 
@@ -496,7 +496,7 @@ const SurfProfile = () => {
                                 </View>
 
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Wind Speed (knots) [Min to Max]</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('windSpeed')}</Text>
                                     <View style={surfProfileStyles.multiInputRow}>
                                         <TextInput 
                                             keyboardType="numeric" style={surfProfileStyles.flexInput} placeholder="Min" 
@@ -513,7 +513,7 @@ const SurfProfile = () => {
                                 </View>
 
                                 <View style={surfProfileStyles.inputGroup}>
-                                    <Text style={surfProfileStyles.label}>Favorite Wind Conditions</Text>
+                                    <Text style={surfProfileStyles.label}>{i18n.t('favoriteWind')}</Text>
                                     <ChipGroup 
                                         options={['Offshore', 'Light-Onshore', 'Glassy', 'No-Wind']}
                                         selectedValues={profile.sportConditions[sport].favoriteWindConditions}
@@ -531,7 +531,7 @@ const SurfProfile = () => {
                 onPress={handleSave} 
                 disabled={loading}
             >
-                {loading ? <ActivityIndicator color="#fff" /> : <Text style={surfProfileStyles.saveBtnText}>Save Profile</Text>}
+                {loading ? <ActivityIndicator color="#fff" /> : <Text style={surfProfileStyles.saveBtnText}>{i18n.t('saveProfile')}</Text>}
             </TouchableOpacity>
         </ScrollView>
     );
